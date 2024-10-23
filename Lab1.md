@@ -2,10 +2,10 @@
  # 1. Phân tích kiến trúc
 - Kiến trúc dịch vụ: kiến trúc 4 lớp
   + Giai thích lý do lựa chọn:
-     + Tính tách biệt mỗi lớp có trách nhiệm riêng, giúp quản lý và phát triển hệ thống dễ dàng.
+     + Tính tách biệt mỗi lớp, giúp quản lý và phát triển hệ thống dễ dàng.
      + Khả năng mở rộng dễ dàng bổ sung các tính năng mới mà không làm gián đoạn các phần khác của hệ thống.
-     + Bảo trì và kiểm soát lỗi tốt hơn.
-     + Hệ thống có thể dễ dàng tích hợp với các dịch vụ và hệ thống bên ngoài.
+     + Bảo trì và kiểm soát lỗi tốt.
+     + Hệ thống dễ dàng tích hợp với các dịch vụ và hệ thống bên ngoài.
    + Ý nghĩa:
      + Presentation Layer: Kết nối giữa người dùng và hệ thống, cung cấp giao diện thân thiện.
      + Business Layer: Thực hiện quy trình nghiệp vụ chính, đảm bảo tính chính xác và đáng tin cậy trong việc tính toán lương và xử lý hoa hồng.
