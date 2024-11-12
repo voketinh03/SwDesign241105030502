@@ -2,6 +2,7 @@
 # 1. Subsystem context diagrams
    -  Biểu đồ ngữ cảnh của hệ thống con BankSystem
      ![Diagram](https://planttext.com/api/plantuml/png/h5BBJiCm4BpxArQzK2JI3wYig6h58RUAdZWQPzjQSRoHxQX4m9Tnu9Fu1UpcWKivDeTai-FPcPta-_DhvRomlgqrh8MfTftpME_Q5tSkcAkKQOGLDLYKNfY3HdXZ4AwraDN1KclA3McodBkH18sbroxFuHcrfXFxOEmEDcIy9GqRBPnZCjvXAxhGqWEaqGBdidy9x5u6mBPcE3Y_xsSLngFT2ubCZHKKl-udPeaDEUNd8l3b4MK5InZB1mXSYgJGZ8_2xCdMmYioWyoK0cpZGeFfHEU_dM-a_MYyyWgJfFeXd6D4Wb9Y9w6d1yAO9zJdjZkgnh7hlBEIJYRBBz9RmgnKyMkFExWPIt7-lbWaALnWb6MJrolWZrMsGbE6_uxz0000__y30000)
+       - Giari thích thành phần biểu đồ trên
 
    -  Biểu đồ ngữ cảnh của hệ thống con PrintService
      ![Diagram](https://planttext.com/api/plantuml/png/b5AzJiCm4Dxz5ASkb25zW2gAAW93cH2T65td6gmwlc1VA1NmP0my4g_0XQGHYRhKW-NJtVTtyi_Nzogo3jnK3Xw2zRp1y6eDRffjF4R6IiMzzRKEkeA0XhKl7SAx0ZatskpBG8qlSd8KqZIUG507UZjc6JoXStHGdqfTGKwU0pd8dOvHcVQ6Mp9DXPxxdiC0QMgwGk2T3eZoIuEH_mpEhpkwjMSCEsrGsTCBrlyZ36YnLTaEV4_RUT5hmdAGxoc7qB8AyTzx776U2tcnpfrdonQdIn1oR3l2sKuzejDioSTdMqTrPbD9GGUVP9FKIvX5z0KCyZiAObKch2zdQZoSVYmMeu2JFYN9O4-jX5R-YVe5003__mC0)
