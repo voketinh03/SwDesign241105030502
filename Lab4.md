@@ -1,5 +1,20 @@
 # Lab 4
-## 1. Maintain timecard - Basic Flow
+## 1. Login:**
+#### Mô tả:** Ca sử dụng này cho phép người dùng hệ thống đăng nhập bằng cách nhập tên đăng nhập và mật khẩu.
+#### Thiết kế:**
+  + Thành phần tham gia:
+      **LoginForm (boundary):** giao diện nhập tên đăng nhập và mật khẩu.
+      **User (actor):** người dùng của hệ thống.
+      **AuthenticationSystem (control):** kiểm tra thông tin xác thực.
+  + Luồng chính:
+      B1: Người dùng nhập tên đăng nhập và mật khẩu vào **LoginForm.**
+      B2: **LoginForm** gửi thông tin đến **AuthenticationSystem** để xác thực.
+      B3: **AuthenticationSystem** xác thực thông tin với cơ sở dữ liệu.
+      B4: Nếu thông tin hợp lệ, cho phép truy cập vào hệ thống.
+#### Lý do thiết kế:**
+  + Tuân thủ mô hình boundary-control-entity để đảm bảo tính độc lập giữa giao diện, xử lý nghiệp vụ và dữ liệu.
+  + Giao diện **LoginForm** nằm trong gói **Security:GUI Framework** để đảm bảo tích hợp chặt chẽ với hệ thống bảo mật.
+## 2. Maintain timecard - Basic Flow
 #### Mô tả sự tương tác giữa các đối tượng thiết kế
 Tác nhân: Nhân viên, người quản trị hệ thống
 
@@ -27,7 +42,7 @@ Hệ thống thẻ chấm công sẽ lưu trữ những thông tin sau cho mỗi
 1. Hệ thống thẻ chấm công sẽ tích hợp với hệ thống quản lý nhân viên để truy cập thông tin nhân viên.
 2. Hệ thống thẻ chấm công sẽ tích hợp với hệ thống quản lý thời gian nghỉ để xử lý các yêu cầu nghỉ phép.
 3. Hệ thống thẻ chấm công sẽ tích hợp với hệ thống bảng lương để tính lương cho nhân viên.
-### Ca sử dụng: RunPayroll
+### 3. Ca sử dụng: RunPayroll
 #### Mô tả sự tương tác giữa các đối tượng thiết kế
 1. Tác nhân:
 + Người quản trị hệ thống: Là người thực hiện quy trình trả lương.
@@ -65,3 +80,49 @@ Luồng sự kiện:
 1. PayrollController: Là lớp điều khiển trung tâm, quản lý toàn bộ quy trình trả lương.
 2. IBankSystem và BankSystem: để tương tác với hệ thống ngân hàng
 3. Paycheck và Employee: Các thực thể này được định nghĩa rõ ràng, giúp việc truy xuất và xử lý thông tin trở nên dễ dàng hơn.
+## 4. Giao dịch với hệ thống ngân hàng (BankSystem Subsystem):**
+**- Mô tả:** Hệ thống tương tác với các ngân hàng bên ngoài để thực hiện các giao dịch, như chuyển khoản lương qua tài khoản.
+**- Thiết kế:**
+  + Thành phần tham gia:
+      **PayrollController** (control): điều khiển quá trình thực hiện giao dịch.
+      **IBankSystem** (interface): đại diện giao tiếp với hệ thống ngân hàng.
+      **BankSystem** (subsystem): hiện thực giao tiếp với hệ thống ngân hàng bên ngoài.
+      **Paycheck, BankInformation** (entity): thông tin cần thiết cho giao dịch.
+  + Luồng chính: 
+      B1: **PayrollController** gọi **IBankSystem** với thông tin phiếu lương **(Paycheck)** và thông tin ngân hàng **(BankInformation)**.
+      B2: **IBankSystem** chuyển yêu cầu đến **BankSystem.**
+      B3: **BankSystem** thực hiện giao dịch với ngân hàng.
+      B4: Hệ thống trả kết quả về cho **PayrollController.**
+**- Lý do thiết kế:**
+  + Encapsulation: Interface **IBankSystem** đóng vai trò trung gian, giúp giảm phụ thuộc vào các thay đổi trong hệ thống ngân hàng.
+  + Mô hình client-subsystem: Tương tác giữa **PayrollController** và **BankSystem** qua interface chuẩn hóa.
+## 5. In phiếu lương (PrintService Subsystem):**
+**- Mô tả:** Hệ thống tạo và in các phiếu lương để cung cấp cho nhân viên.
+**- Thiết kế:**
+  + Thành phần tham gia:
+      **PayrollController** (control): điều phối quá trình in phiếu lương.
+      **IPrintService** (interface): giao diện với dịch vụ in.
+      **PrintService** (subsystem): hiện thực giao tiếp với máy in.
+      **Paycheck** (entity): thông tin phiếu lương cần in.
+  + Luồng chính:
+      B1: **PayrollController** gửi thông tin phiếu lương **(Paycheck)** và chỉ định máy in qua **IPrintService.**
+      B2: **IPrintService** gọi **PrintService** để in phiếu lương.
+      B3: **PrintService** thực hiện in và trả thông báo trạng thái.
+**- Lý do thiết kế:**
+  + Interface **IPrintService** giúp đảm bảo khả năng mở rộng, cho phép tích hợp với nhiều loại máy in khác nhau.
+  + Subsystem **PrintService** tách biệt logic in ấn khỏi phần điều phối chính **(PayrollController).**
+## 6. Quản lý mã dự án (ProjectManagementDatabase Subsystem):**
+**- Mô tả:** Cung cấp thông tin mã dự án (charge numbers) từ cơ sở dữ liệu quản lý dự án.
+**- Thiết kế:**
+  + Thành phần tham gia:
+      **TimecardController** (control): điều phối việc lấy mã dự án.
+      **IProjectManagementDatabase** (interface): giao diện với hệ thống quản lý dự án.
+      **ProjectManagementDatabase** (subsystem): hiện thực giao tiếp với cơ sở dữ liệu.
+  + Luồng chính:
+      B1: **TimecardController** gửi yêu cầu đến **IProjectManagementDatabase** với tiêu chí lọc.
+      B2: **IProjectManagementDatabase** chuyển yêu cầu đến **ProjectManagementDatabase.**
+      B3: **ProjectManagementDatabase** truy xuất dữ liệu và trả danh sách mã dự án.
+**- Lý do thiết kế:**
+  + Encapsulation: Interface **IProjectManagementDatabase** cung cấp một điểm truy cập duy nhất, giảm sự phụ thuộc vào cấu trúc cơ sở dữ liệu.
+  + Hỗ trợ khả năng tích hợp: Subsystem **ProjectManagementDatabase** cho phép tích hợp liền mạch với các hệ thống kế thừa.
+
